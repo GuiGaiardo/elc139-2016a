@@ -7,6 +7,7 @@ Nome: < preencha seu nome aqui >
 
 | Característica                                            | Computador no TOP500  | Meu computador  |
 | --------------------------------------------------------- | --------------------- | --------------- |
+<<<<<<< HEAD
 | Nome/Título                                               |Supercomputador Santos Dumond|Vostro 5470|
 | Imagem (foto, diagrama, screenshot, etc.)                 |Santos Dumond![](http://www.lncc.br/images/sp.jpg) | |
 | Classificação de Flynn                                    |?						|?                |
@@ -17,6 +18,18 @@ Nome: < preencha seu nome aqui >
 | Memória total                                             | 48384GB               |   4GB           |
 | Tipo(s) de interconexão entre os núcleos/processadores    |Infiniband FDR         |        ?        |
 | Desempenho Linpack                                        |321.178 TFlop/s        |Em arquivo separado (win_xeon32.txt e win_xeon64.txt)|
+=======
+| Nome/Título                                               |                       |                 |
+| Imagem (foto, diagrama, screenshot, etc.)                 | Substitua-me. <img src="http://www.top500.org/static//images/Top500_logo.png" width="48"> | |
+| Classificação de Flynn                                    |                       |                 |
+| Memória: compartilhada, distribuída ou ambas?             |                       |                 |
+| Número total de núcleos de processamento                  |                       |                 |
+| Fabricante e modelo do(s) processador(es)                 |                       |                 |
+| Frequência do(s) processador(es)                          |                       |                 |
+| Memória total                                             |                       |                 |
+| Tipo(s) de interconexão entre os núcleos/processadores    |                       |                 |
+| Desempenho Linpack                                        |                       |                 |
+>>>>>>> upstream/master
 
 ### Referências
 - Site Top 500. http://www.top500.org/system/178568
