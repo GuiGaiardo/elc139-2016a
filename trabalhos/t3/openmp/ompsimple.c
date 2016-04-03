@@ -3,8 +3,9 @@
 
 int main() 
 {
-  #pragma omp parallel
-  printf("Hello World\n");
-  return 0;
+	int i = 1;
+	#pragma omp parallel
+  	printf("Hello World%d\n", i);
+	return 0;
 }
 

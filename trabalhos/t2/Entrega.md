@@ -51,15 +51,15 @@ Parte 2: Profiling do dot_product em python 3
 
 		B.2) Com o 'cProfile'
 		Index 	Config 			Tempo 	(tempo automedido)
-		[10]		"3000 10": 		0.004s 	(4051usec)
-		[11]		"3000 50": 		0.021s 	(20897usec)
-		[12]		"3000 100": 	0.041s 	(40637usec)
-		[13]		"300000 10":	0.446s 	(410478usec)
-		[14]		"300000 50":	2.075s 	(2046507usec)
-		[15]		"300000 100":	4.169s 	(4114988usec)
-		[16]		"30000000 10":	46.198s	(43309620usec)
-		[17]		"30000000 50":	221.417s(218409014usec)
-		[18]		"30000000 100":	436.154s(432986279usec)
+		[10]	"3000 10": 		0.004s 	(4051usec)
+		[11]	"3000 50": 		0.021s 	(20897usec)
+		[12]	"3000 100": 	0.041s 	(40637usec)
+		[13]	"300000 10":	0.446s 	(410478usec)
+		[14]	"300000 50":	2.075s 	(2046507usec)
+		[15]	"300000 100":	4.169s 	(4114988usec)
+		[16]	"30000000 10":	46.198s	(43309620usec)
+		[17]	"30000000 50":	221.417s(218409014usec)
+		[18]	"30000000 100":	436.154s(432986279usec)
 
 		A coluna Tempo se refere ao tempo indicado na medição da chamada da função 'main()' e é indicada pelo profiler.
 		A coluna tempo automedido se refere à medição de tempo de CPU feita no proprio programa (chamada da função dot_product()).
