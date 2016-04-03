@@ -3,7 +3,8 @@ Professora: Dra. Andrea Schwertner Charao
 Aluno: Guilherme Gaiardo (Matrícula: 201210149)
 
 # Parte I: Pthreads
-## A) As etapas de particionamento de aglomeração são implementadas em conjunto. Ainda que seja possível particionar o produto interno dos dois vetores de tamanho N em N partes, isso não necessariamente resultaria em speedup, pois seriam necessários N núcleos para tirar proveito disso. Como resultado, as operações são aglomeradas conforme o número de threads a serem utilizadas na execução.
+## A)
+As etapas de particionamento de aglomeração são implementadas em conjunto. Ainda que seja possível particionar o produto interno dos dois vetores de tamanho N em N partes, isso não necessariamente resultaria em speedup, pois seriam necessários N núcleos para tirar proveito disso. Como resultado, as operações são aglomeradas conforme o número de threads a serem utilizadas na execução.
 Agloremação definida como worksize (parametro passado para a execução):
 
 	(l.123)dotdata.wsize = wsize;
@@ -17,9 +18,11 @@ O mapeamento é feito pelo SO, nenhuma thread é mapeada diretamente à algum n�
 	for (i = 0; i < nthreads; i++)
 		pthread_create(&threads[i], &attr, dotprod_worker, (void *) i);
 
-## B) O speedup de 1 thread para 2 threads foi de aproximadamente 2.
+## B)
+O speedup de 1 thread para 2 threads foi de aproximadamente 2.
 
-## D)Tabelas de speedup conforme variações nos parâmetros. (Tempo é o tempo médio de 5 execuções, calculados via script run_dotprod.py).
+## D)
+Tabelas de speedup conforme variações nos parâmetros. (Tempo é o tempo médio de 5 execuções, calculados via script run_dotprod.py).
 
 ###Tabela 1- Tamanho Vetor=100000
 |No. Threads|Repetições	|Tempo(s)	|speedup	|Eficiencia(%)	|
@@ -68,9 +71,11 @@ Sem o mutex o código está errado, pois pode chegar ao resultado errado em fun�
 
 
 #Parte II: OpenMP
-##A) A implementação encontra-se em ./openmp/omp_dotprod.c e seu executável em ./openmp/omp_dotprod.
+##A)
+A implementação encontra-se em ./openmp/omp_dotprod.c e seu executável em ./openmp/omp_dotprod.
 
-##B) Tabelas de speedup conforme variação nos parâmetros.
+##B)
+Tabelas de speedup conforme variação nos parâmetros.
 
 ###Tabela 4- Tamanho Vetor=100000
 |No. Threads|Repetições	|Tempo(s)	|speedup	|Eficiencia(%)	|
