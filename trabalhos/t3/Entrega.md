@@ -63,10 +63,11 @@ Tabelas de speedup conforme variações nos parâmetros. (Tempo é o tempo médi
 |2			|3000		|8.48		|1.96		|98				|
 |4			|3000		|6.55		|2.54		|63				|
 
-## E) A diferença entre um e outro é a seguinte:
-		(l.45)pthread_mutex_lock (&mutexsum);
-   		(l.46)dotdata.c += mysum;
-   		(l.47)pthread_mutex_unlock (&mutexsum);
+## E)
+A diferença entre um e outro é a seguinte:
+	(l.45)pthread_mutex_lock (&mutexsum);
+	(l.46)dotdata.c += mysum;
+	(l.47)pthread_mutex_unlock (&mutexsum);
 Sem o mutex o código está errado, pois pode chegar ao resultado errado em função de condições de corrida.
 
 
