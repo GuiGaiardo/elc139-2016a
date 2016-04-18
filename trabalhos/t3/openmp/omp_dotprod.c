@@ -37,7 +37,7 @@ void dotprod_threads(int nthreads)
    {
       for (k = 0; k < dotdata.repeat; k++) {
          mysum = 0.0;
-         #pragma omp for schedule(dynamic,dotdata.wsize)
+         #pragma omp for schedule(static,dotdata.wsize)
          for (i = 0; i < end ; i++)  {
             mysum += (a[i] * b[i]);
          }

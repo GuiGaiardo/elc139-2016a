@@ -2,6 +2,10 @@ Disciplina: Programação Paralela (elc139-2016a)
 Professora: Dra. Andrea Schwertner Charao
 Aluno: Guilherme Gaiardo (Matrícula: 201210149)
 
+
+#Equipamento utilizado:
+O equipamento utilizado foi um Intel Core i3-4030U, o qual possui 2 núcleos com Hyperthreading habilitado (4 núcleos virtuais).
+
 # Parte I: Pthreads
 ## A) As etapas de particionamento de aglomeração são implementadas em conjunto. Ainda que seja possível particionar o produto interno dos dois vetores de tamanho N em N partes, isso não necessariamente resultaria em speedup, pois seriam necessários N núcleos para tirar proveito disso. Como resultado, as operações são aglomeradas conforme o número de threads a serem utilizadas na execução.
 Agloremação definida como worksize (parametro passado para a execução):
@@ -112,3 +116,4 @@ Sem o mutex o código está errado, pois pode chegar ao resultado errado em fun�
 |4			|3000		|7.33		|2.35		|58				|
 
 Em comparação com Posix Threads, OpenMP tem um desempenho levemente menor para todos os parâmetros testados.
+Uma possível explicação é que foram alterados os parâmetros de aglomeração, pois na versão OpenMP cada thread realiza o trabalho equivalente ao for mais interno, enquanto o trabalho das repetições não é paralelizado. Isso modifica a divisão do trabalho para cada thread.

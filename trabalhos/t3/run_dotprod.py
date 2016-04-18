@@ -36,7 +36,7 @@ for size in vector_size:
 			cmd = exec_path + " " + str(threads) + " " + str(size/threads) + " " + str(repetition)
 			times = []
 			media = 0
-			for i in range(5):	#executa 5 vezes cada comando para tirar a media
+			for i in range(10):	#executa 5 vezes cada comando para tirar a media
 				exe = Popen(cmd, shell=True, stdout=PIPE)
 				(saida, erro) = exe.communicate()	#espera até finalizar o dotprod
 				saida = saida.decode()
