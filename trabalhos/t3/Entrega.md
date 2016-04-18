@@ -7,7 +7,8 @@ Aluno: Guilherme Gaiardo (Matrícula: 201210149)
 O equipamento utilizado foi um Intel Core i3-4030U, o qual possui 2 núcleos com Hyperthreading habilitado (4 núcleos virtuais).
 
 # Parte I: Pthreads
-## A) As etapas de particionamento de aglomeração são implementadas em conjunto. Ainda que seja possível particionar o produto interno dos dois vetores de tamanho N em N partes, isso não necessariamente resultaria em speedup, pois seriam necessários N núcleos para tirar proveito disso. Como resultado, as operações são aglomeradas conforme o número de threads a serem utilizadas na execução.
+## A)
+As etapas de particionamento de aglomeração são implementadas em conjunto. Ainda que seja possível particionar o produto interno dos dois vetores de tamanho N em N partes, isso não necessariamente resultaria em speedup, pois seriam necessários N núcleos para tirar proveito disso. Como resultado, as operações são aglomeradas conforme o número de threads a serem utilizadas na execução.
 Agloremação definida como worksize (parametro passado para a execução):
 
 	(l.123)dotdata.wsize = wsize;
@@ -21,9 +22,11 @@ O mapeamento é feito pelo SO, nenhuma thread é mapeada diretamente à algum n�
 	for (i = 0; i < nthreads; i++)
 		pthread_create(&threads[i], &attr, dotprod_worker, (void *) i);
 
-## B) O speedup de 1 thread para 2 threads foi de aproximadamente 2.
+## B)
+O speedup de 1 thread para 2 threads foi de aproximadamente 2.
 
-## D)Tabelas de speedup conforme variações nos parâmetros. (Tempo é o tempo médio de 5 execuções, calculados via script run_dotprod.py).
+## D)
+Tabelas de speedup conforme variações nos parâmetros. (Tempo é o tempo médio de 5 execuções, calculados via script run_dotprod.py).
 
 ###Tabela 1- Tamanho Vetor=100000
 |No. Threads|Repetições	|Tempo(s)	|speedup	|Eficiencia(%)	|
@@ -64,17 +67,20 @@ O mapeamento é feito pelo SO, nenhuma thread é mapeada diretamente à algum n�
 |2			|3000		|8.48		|1.96		|98				|
 |4			|3000		|6.55		|2.54		|63				|
 
-## E) A diferença entre um e outro é a seguinte:
-		(l.45)pthread_mutex_lock (&mutexsum);
-   		(l.46)dotdata.c += mysum;
-   		(l.47)pthread_mutex_unlock (&mutexsum);
+## E)
+A diferença entre um e outro é a seguinte:
+	(l.45)pthread_mutex_lock (&mutexsum);
+	(l.46)dotdata.c += mysum;
+	(l.47)pthread_mutex_unlock (&mutexsum);
 Sem o mutex o código está errado, pois pode chegar ao resultado errado em função de condições de corrida.
 
 
 #Parte II: OpenMP
-##A) A implementação encontra-se em ./openmp/omp_dotprod.c e seu executável em ./openmp/omp_dotprod.
+##A)
+A implementação encontra-se em ./openmp/omp_dotprod.c e seu executável em ./openmp/omp_dotprod.
 
-##B) Tabelas de speedup conforme variação nos parâmetros.
+##B)
+Tabelas de speedup conforme variação nos parâmetros.
 
 ###Tabela 4- Tamanho Vetor=100000
 |No. Threads|Repetições	|Tempo(s)	|speedup	|Eficiencia(%)	|
@@ -116,4 +122,7 @@ Sem o mutex o código está errado, pois pode chegar ao resultado errado em fun�
 |4			|3000		|7.33		|2.35		|58				|
 
 Em comparação com Posix Threads, OpenMP tem um desempenho levemente menor para todos os parâmetros testados.
+<<<<<<< HEAD
 Uma possível explicação é que foram alterados os parâmetros de aglomeração, pois na versão OpenMP cada thread realiza o trabalho equivalente ao for mais interno, enquanto o trabalho das repetições não é paralelizado. Isso modifica a divisão do trabalho para cada thread.
+=======
+>>>>>>> refs/remotes/origin/master
