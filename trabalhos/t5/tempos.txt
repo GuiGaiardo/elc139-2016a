@@ -1,0 +1,109 @@
+
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 500000 1
+39.720561000000004
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 500000 1
+31.6543045
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 500000 10
+42.7267255
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 500000 10
+29.551563
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 500000 100
+40.762823499999996
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 500000 100
+27.9324705
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 1000000 1
+149.11208399999998
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 1000000 1
+108.15352200000001
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 1000000 10
+150.096031
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 1000000 10
+99.6774705
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 1000000 100
+146.847852
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 1000000 100
+110.4629685
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes2 500000 1
+57.1028445
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes2 500000 1
+30.499418499999997
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes2 500000 10
+31.95216
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes2 500000 10
+23.600296
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes2 500000 100
+29.163182499999998
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes2 500000 100
+23.380571500000002
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes2 1000000 1
+219.178995
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes2 1000000 1
+111.0081905
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes2 1000000 10
+105.022962
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes2 1000000 10
+83.643445
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes2 1000000 100
+109.23304300000001
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes2 1000000 100
+86.40439900000001
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes3 500000 1
+28.964045499999997
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes3 500000 1
+22.462173
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes3 500000 10
+31.940093500000003
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes3 500000 10
+24.36135
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes3 500000 100
+29.4383775
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes3 500000 100
+22.3959295
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes3 1000000 1
+111.3662405
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes3 1000000 1
+86.18097
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes3 1000000 10
+118.53824850000001
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes3 1000000 10
+91.50504000000001
+
+Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes3 1000000 100
+115.5076445
+
+Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes3 1000000 100
+87.5979095

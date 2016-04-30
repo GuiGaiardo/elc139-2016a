@@ -2,30 +2,32 @@
 #include <stdio.h>
 #include <omp.h>
 
-int prime_seq(int n);
+int prime_v2(int n, int chunk_size);
 
 int main(int argc, char *argv[])
 {
-  int n, primes;
-  double time1;
+  int n, chunk_size;
+  int primes;
+  double init_time, run_time;
 
-  if (argc != 2){
-  	printf("Uso: %s <N_MAX>\n", argv[0]);
-  	exit(EXIT_FAILURE);
+  if (argc != 3){
+	printf("Uso: %s <N_MAX> <chunk size>\n", argv[0]);
+	exit(EXIT_FAILURE);
   }
   n = atoi(argv[1]);
+  chunk_size = atoi(argv[2]);
 
-  time1 = omp_get_wtime();
-  primes = prime_seq(n);
-  time1 = omp_get_wtime() - time1;
-
-  printf ("\nTime: %12f", time1);
+  init_time = omp_get_wtime();
+  primes = prime_v2(n, chunk_size);
+  run_time = omp_get_wtime() - init_time;
+  
+  printf ("\nTime: %12f", run_time);
   
   return 0;
 }
 
 /******************************************************************************/
-int prime_seq(int n)
+int prime_v2(int n, int chunk_size)
 /******************************************************************************/
 {
   int i;
@@ -33,6 +35,7 @@ int prime_seq(int n)
   int prime;
   int total = 0;
 
+  #pragma omp parallel for private(j, prime) schedule(static, chunk_size)
   for (i = 2; i <= n; i++)
   {
     prime = 1;
@@ -44,6 +47,7 @@ int prime_seq(int n)
         break;
       }
     }
+    #pragma omp critical
     total = total + prime;
   }
   return total;
