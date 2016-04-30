@@ -8,7 +8,7 @@ Quarta-feira, 4/maio, 23:59.
 
 ## Trabalho
 
-- Conheça o mistério e a tarefa consultando [estes slides](http://www-usr.inf.ufsm.br/~andrea/elc139-2015a/slides-misterio-primos-2016a.pdf).
+- Conheça o mistério e a tarefa consultando [estes slides](../../slides/slides-misterio-primos-2016a.pdf).
 
 - Baixe o programa sequencial [aqui](primes_seq.c). Esse programa já tem 3 cópias da mesma função que deve ser paralelizada em 3 versões. Basta alterar cada função e deixar que a função principal faça as medições de tempos.
 
