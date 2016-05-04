@@ -1,8 +1,0 @@
-
-
-Media do tempo de execucao para OMP_NUM_THREADS=2 ./primes1 100000 1
-1.8549268
-
-
-Media do tempo de execucao para OMP_NUM_THREADS=4 ./primes1 100000 1
-1.3278776

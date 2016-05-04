@@ -47,7 +47,7 @@ int prime_v1(int n)
         break;
       }
     }
-    #pragma omp critical
+    #pragma omp atomic
     total = total + prime;
   }
   return total;

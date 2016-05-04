@@ -66,6 +66,9 @@ class estatisticator9001:
 
 		return (line, column)
 
+	def get_seq_time(self, n):
+		return self.t_seq[n]
+
 	def get_time(self, n, chunk, threads, version):
 		(line, column) = self.__get_indexes(chunk, threads, version)
 
@@ -96,9 +99,9 @@ class estatisticator9001:
 				lines = [identifier,header]
 				for version in self.versions:
 					for threads in self.n_threads:
-						line = "|" + str(version) + "|" + str(threads) + "|"
+						line = "|" + str(version) + "\t|" + str(threads) + "\t|"
 						for chunk in self.chunk_sizes:
-							line += str(self.get_time(n,chunk,threads,version)) + "|"
+							line += ("%.2f" % self.get_time(n,chunk,threads,version)) + "\t|"
 						lines.append(line+"\n")
 				f.writelines(lines)
 				counter += 1
@@ -107,11 +110,12 @@ class estatisticator9001:
 			for n in self.times:
 				identifier = "\n###Tabela " + str(counter) + "- SpeedUps para N=" + str(n) + "\n"
 				lines = [identifier,header]
+				t_seq = self.get_seq_time(n)
 				for version in self.versions:
 					for threads in self.n_threads:
-						line = "|" + str(version) + "|" + str(threads) + "|"
+						line = "|" + str(version) + "\t|" + str(threads) + "\t|"
 						for chunk in self.chunk_sizes:
-							line += str(self.get_speedup(n,chunk,threads,version)) + "|"
+							line += ("%.2f" % self.get_speedup(n,chunk,threads,version)) + "\t|"
 						lines.append(line+"\n")
 				f.writelines(lines)
 				counter += 1
@@ -122,19 +126,20 @@ class estatisticator9001:
 				lines = [identifier,header]
 				for version in self.versions:
 					for threads in self.n_threads:
-						line = "|" + str(version) + "|" + str(threads) + "|"
+						line = "|" + str(version) + "\t|" + str(threads) + "\t|"
 						for chunk in self.chunk_sizes:
-							line += str(self.get_efficiency(n,chunk,threads,version)) + "|"
+							line += ("%.2f" % self.get_efficiency(n,chunk,threads,version)) + "\t|"
 						lines.append(line+"\n")
 				f.writelines(lines)
 				counter += 1
 
 	
 	def __format_header(self):
-		header = "|V|#Thr|"
+		header = "|Version|No. Threads|"
 		for chunk in self.chunk_sizes:
 			header += "Chunk="+str(chunk)+"|"
 		header += "\n"
+		header += "|-------|----|-------|--------|---------|----------|\n"
 
 		return header
 
@@ -157,13 +162,13 @@ def get_run_time(cmd):
 		times.append(float(time))	#pega o tempo de execução: decodifica a saida para string e converte-a em inteiro
 	return get_media(times)
 
-############################################
+#######################################################
 #Parametros que serão variados entre as execuções
 progs = {1:"./primes1", 2:"./primes2", 3:"./primes3"}
-n_max = [500000, 1000000]
+n_max = [500000, 750000, 1000000]
 chunk_sizes = [1,10,100,1000]
 n_threads = [2,4]
-############################################
+#######################################################
 
 
 
