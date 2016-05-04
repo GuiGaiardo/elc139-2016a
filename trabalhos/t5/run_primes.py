@@ -94,6 +94,18 @@ class estatisticator9001:
 
 		with open(output_file, "w") as f:
 			#Tabelas de tempos
+			lines = self.__format_sequential_times()
+			output_file.writelines(lines)
+			counter += 1
+
+			for n in self.t_seq:
+				identifier = "\n###Tabela " + str(counter) + "- Tempos versão sequencial" + str(n) + "\n"
+				lines = [identifier,"|--------|--------|---------|\n|N=500000|N=750000|N=1000000|\n"]
+				line = "|" + str(version) + "\t|" + str(threads) + "\t|"
+				line += ("%.2f" % self.get_time(n,chunk,threads,version)) + "\t|"
+				lines.append(line+"\n")
+				f.writelines(lines)
+				counter += 1
 			for n in self.times:
 				identifier = "\n###Tabela " + str(counter) + "- Tempos para N=" + str(n) + "\n"
 				lines = [identifier,header]
@@ -133,7 +145,16 @@ class estatisticator9001:
 				f.writelines(lines)
 				counter += 1
 
-	
+	#the most anti-pythonic thing ever made in python x.x
+	def __format_sequential_times(self):
+		identifier = "\n###Tabela 1- Tempos versão sequencial\n"
+		header = "|--------|--------|---------|\n|N=500000|N=750000|N=1000000|\n"
+		lines = [identifier,header]
+		line = "|" + str(self.t_seq[500000]) + "\t|" + str(self.t_seq[750000]) + "\t|" + str(self.t_seq[1000000]) + "\t|\n"
+		lines.append(line)
+		return lines
+
+
 	def __format_header(self):
 		header = "|Version|No. Threads|"
 		for chunk in self.chunk_sizes:
