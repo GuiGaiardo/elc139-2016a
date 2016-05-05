@@ -6,16 +6,19 @@ int prime_v1(int n);
 
 int main(int argc, char *argv[])
 {
-  int n, chunk_size;
+  int n, nthreads;
   int primes;
   double init_time, run_time;
 
   if (argc != 3){
-	printf("Uso: %s <N_MAX> <chunk size>\n", argv[0]);
+	printf("Uso: %s <n_threads> <N_MAX>\n", argv[0]);
 	exit(EXIT_FAILURE);
   }
-  n = atoi(argv[1]);
-  chunk_size = atoi(argv[2]);
+  n = atoi(argv[2]);
+  nthreads = atoi(argv[1]);
+
+  omp_set_num_threads(nthreads);
+
 
   init_time = omp_get_wtime();
   primes = prime_v1(n);

@@ -2,6 +2,7 @@
 #Description: Script para rodar o 'primes' com diferentes parametros
 
 from subprocess import *
+import json
 import sys
 
 #Tabajara(R)
@@ -86,6 +87,20 @@ class estatisticator9001:
 		return self.speedups[n][line][column]
 
 
+	def dump(self, dump_file_name):
+		lines = []
+		lines.append(self.times)
+		lines.append(self.speedups)
+		lines.append(self.efficiencies)
+		lines.append(self.t_seq)
+		lines.append(self.chunk_sizes)
+		lines.append(self.n_threads)
+		lines.append(self.versions)
+
+		with open(dump_file_name, "w") as dump_file:
+			json.dump(lines, dump_file)
+
+
 	def print_tables(self, output_file = "tables.md"):
 		#printa as tabelas em formato Markdown
 		counter = 1
@@ -95,17 +110,9 @@ class estatisticator9001:
 		with open(output_file, "w") as f:
 			#Tabelas de tempos
 			lines = self.__format_sequential_times()
-			output_file.writelines(lines)
+			f.writelines(lines)
 			counter += 1
 
-			for n in self.t_seq:
-				identifier = "\n###Tabela " + str(counter) + "- Tempos versão sequencial" + str(n) + "\n"
-				lines = [identifier,"|--------|--------|---------|\n|N=500000|N=750000|N=1000000|\n"]
-				line = "|" + str(version) + "\t|" + str(threads) + "\t|"
-				line += ("%.2f" % self.get_time(n,chunk,threads,version)) + "\t|"
-				lines.append(line+"\n")
-				f.writelines(lines)
-				counter += 1
 			for n in self.times:
 				identifier = "\n###Tabela " + str(counter) + "- Tempos para N=" + str(n) + "\n"
 				lines = [identifier,header]
@@ -150,6 +157,7 @@ class estatisticator9001:
 		identifier = "\n###Tabela 1- Tempos versão sequencial\n"
 		header = "|--------|--------|---------|\n|N=500000|N=750000|N=1000000|\n"
 		lines = [identifier,header]
+		print(self.t_seq)
 		line = "|" + str(self.t_seq[500000]) + "\t|" + str(self.t_seq[750000]) + "\t|" + str(self.t_seq[1000000]) + "\t|\n"
 		lines.append(line)
 		return lines
@@ -187,7 +195,7 @@ def get_run_time(cmd):
 #Parametros que serão variados entre as execuções
 progs = {1:"./primes1", 2:"./primes2", 3:"./primes3"}
 n_max = [500000, 750000, 1000000]
-chunk_sizes = [1,10,100,1000]
+chunk_sizes = [1,10,100,250000]
 n_threads = [2,4]
 #######################################################
 
@@ -217,7 +225,7 @@ with open(file_path, "w") as out_file:
 		for version in progs:
 			for threads in n_threads:
 				for chunk in chunk_sizes:
-					cmd = "OMP_NUM_THREADS=" + str(threads) + " " + progs[version] + " " + str(n) + " " + str(chunk)
+					cmd = progs[version] + " " + str(threads) + " " + str(n) + " " + str(chunk) 
 					media = get_run_time(cmd)
 					output = "\n\nMedia do tempo de execucao para " + cmd + "\n" + str(media)
 					print(output)
@@ -226,4 +234,5 @@ with open(file_path, "w") as out_file:
 
 statistics.calculate_speedups()
 statistics.calculate_efficiencies()
+statistics.dump("dump.data")
 statistics.print_tables()
