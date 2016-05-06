@@ -225,7 +225,11 @@ with open(file_path, "w") as out_file:
 		for version in progs:
 			for threads in n_threads:
 				for chunk in chunk_sizes:
-					cmd = progs[version] + " " + str(threads) + " " + str(n) + " " + str(chunk) 
+					print(version)
+					if version == 1:
+						cmd = progs[version] + " " + str(threads) + " " + str(n)
+					else:
+						cmd = progs[version] + " " + str(threads) + " " + str(n) + " " + str(chunk)
 					media = get_run_time(cmd)
 					output = "\n\nMedia do tempo de execucao para " + cmd + "\n" + str(media)
 					print(output)

@@ -1,0 +1,217 @@
+
+
+Media do tempo de execucao para ./primes1 2 500000
+38.759295
+
+Media do tempo de execucao para ./primes1 2 500000
+38.79926280000001
+
+Media do tempo de execucao para ./primes1 2 500000
+38.7200828
+
+Media do tempo de execucao para ./primes1 2 500000
+38.7424252
+
+Media do tempo de execucao para ./primes1 4 500000
+29.037689999999998
+
+Media do tempo de execucao para ./primes1 4 500000
+28.546061400000003
+
+Media do tempo de execucao para ./primes1 4 500000
+28.9683576
+
+Media do tempo de execucao para ./primes1 4 500000
+28.9822582
+
+Media do tempo de execucao para ./primes2 2 500000 1
+54.83176000000001
+
+Media do tempo de execucao para ./primes2 2 500000 10
+28.8461746
+
+Media do tempo de execucao para ./primes2 2 500000 100
+30.283659
+
+Media do tempo de execucao para ./primes2 2 500000 250000
+41.9992704
+
+Media do tempo de execucao para ./primes2 4 500000 1
+42.53670079999999
+
+Media do tempo de execucao para ./primes2 4 500000 10
+22.3603242
+
+Media do tempo de execucao para ./primes2 4 500000 100
+22.094049
+
+Media do tempo de execucao para ./primes2 4 500000 250000
+42.075714
+
+Media do tempo de execucao para ./primes3 2 500000 1
+29.0388286
+
+Media do tempo de execucao para ./primes3 2 500000 10
+28.9879528
+
+Media do tempo de execucao para ./primes3 2 500000 100
+29.7485978
+
+Media do tempo de execucao para ./primes3 2 500000 250000
+42.797892000000004
+
+Media do tempo de execucao para ./primes3 4 500000 1
+22.270728
+
+Media do tempo de execucao para ./primes3 4 500000 10
+22.2826358
+
+Media do tempo de execucao para ./primes3 4 500000 100
+22.415463199999998
+
+Media do tempo de execucao para ./primes3 4 500000 250000
+44.219987
+
+Media do tempo de execucao para ./primes1 2 750000
+84.160614
+
+Media do tempo de execucao para ./primes1 2 750000
+84.095822
+
+Media do tempo de execucao para ./primes1 2 750000
+84.1944542
+
+Media do tempo de execucao para ./primes1 2 750000
+84.1144316
+
+Media do tempo de execucao para ./primes1 4 750000
+61.85046139999999
+
+Media do tempo de execucao para ./primes1 4 750000
+63.09464059999999
+
+Media do tempo de execucao para ./primes1 4 750000
+62.89839959999999
+
+Media do tempo de execucao para ./primes1 4 750000
+63.0575616
+
+Media do tempo de execucao para ./primes2 2 750000 1
+118.90407780000001
+
+Media do tempo de execucao para ./primes2 2 750000 10
+62.310878
+
+Media do tempo de execucao para ./primes2 2 750000 100
+62.2538678
+
+Media do tempo de execucao para ./primes2 2 750000 250000
+82.4700026
+
+Media do tempo de execucao para ./primes2 4 750000 1
+94.7863972
+
+Media do tempo de execucao para ./primes2 4 750000 10
+47.818784
+
+Media do tempo de execucao para ./primes2 4 750000 100
+47.9653044
+
+Media do tempo de execucao para ./primes2 4 750000 250000
+78.3218492
+
+Media do tempo de execucao para ./primes3 2 750000 1
+62.980990199999994
+
+Media do tempo de execucao para ./primes3 2 750000 10
+63.99939099999999
+
+Media do tempo de execucao para ./primes3 2 750000 100
+62.9402814
+
+Media do tempo de execucao para ./primes3 2 750000 250000
+83.42347380000001
+
+Media do tempo de execucao para ./primes3 4 750000 1
+48.482375000000005
+
+Media do tempo de execucao para ./primes3 4 750000 10
+48.464073400000004
+
+Media do tempo de execucao para ./primes3 4 750000 100
+48.477879400000006
+
+Media do tempo de execucao para ./primes3 4 750000 250000
+80.53192960000001
+
+Media do tempo de execucao para ./primes1 2 1000000
+146.6008372
+
+Media do tempo de execucao para ./primes1 2 1000000
+146.6787704
+
+Media do tempo de execucao para ./primes1 2 1000000
+146.553329
+
+Media do tempo de execucao para ./primes1 2 1000000
+147.2679454
+
+Media do tempo de execucao para ./primes1 4 1000000
+111.02101880000001
+
+Media do tempo de execucao para ./primes1 4 1000000
+109.7283506
+
+Media do tempo de execucao para ./primes1 4 1000000
+109.7818896
+
+Media do tempo de execucao para ./primes1 4 1000000
+108.3018372
+
+Media do tempo de execucao para ./primes2 2 1000000 1
+206.6260836
+
+Media do tempo de execucao para ./primes2 2 1000000 10
+107.63827899999998
+
+Media do tempo de execucao para ./primes2 2 1000000 100
+109.58286960000001
+
+Media do tempo de execucao para ./primes2 2 1000000 250000
+132.424569
+
+Media do tempo de execucao para ./primes2 4 1000000 1
+148.6122196
+
+Media do tempo de execucao para ./primes2 4 1000000 10
+83.0116338
+
+Media do tempo de execucao para ./primes2 4 1000000 100
+83.2608424
+
+Media do tempo de execucao para ./primes2 4 1000000 250000
+112.5716686
+
+Media do tempo de execucao para ./primes3 2 1000000 1
+109.8585888
+
+Media do tempo de execucao para ./primes3 2 1000000 10
+109.90473880000002
+
+Media do tempo de execucao para ./primes3 2 1000000 100
+109.89795920000002
+
+Media do tempo de execucao para ./primes3 2 1000000 250000
+135.7064922
+
+Media do tempo de execucao para ./primes3 4 1000000 1
+84.3584098
+
+Media do tempo de execucao para ./primes3 4 1000000 10
+84.3450808
+
+Media do tempo de execucao para ./primes3 4 1000000 100
+84.3322876
+
+Media do tempo de execucao para ./primes3 4 1000000 250000
+112.67552579999999
