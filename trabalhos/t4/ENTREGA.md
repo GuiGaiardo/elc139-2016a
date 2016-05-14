@@ -9,7 +9,9 @@ O equipamento utilizado foi um Intel Core i3-4030U, o qual possui 2 núcleos com
 #Paralelizando o Algoritmo de Floyd-Warshall
 A versão paralelizada do algoritmo está disponível na pasta floyd_paralelo/floyd_par.cpp.<br>
 A unica mudança realizada no código foi de uma linha, para inserção da diretiva de paralelização. A linha em questão é a seguinte:
+
 	(l.36)#pragma omp parallel for private(i,j,w)
+	
 No algoritmo são utilizados 3 laços 'for' aninhados. Os laços irão aplicar o algoritmo de Djikstra para descobrir o caminho mais curto do vértice i até o vértice j passando por um vértice intermediário k em todos os vértices do grafo.<br>
 O laço paralelizado foi o 'for' do meio, pois desta forma o algoritmo só necessitará informações já disponíveis a respeito dos caminhos, visto que ele fará aproximações dos melhores caminhos a cada iteração do laço mais externo, que não é paralelizado. Deste fato decorre que não há necessidade de bloqueio entre as threads pois a propria forma como o algoritmo é paralelizado já é suficiente para garantir a coerência dos dados.
 
