@@ -2,9 +2,6 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
-#include <mpi.h>
-#include <stdlib.h>
-
 
 using namespace std;
 
@@ -104,90 +101,22 @@ Scene *create(int level, const Vec &c, double r) {
   return new Group(Sphere(c, 3*r), child);
 }
 
-void recieve_and_print(int n_workers, int n, int chunk){
-  int job_counter[n_workers], msg[n], img[n][n], msg_counter = 0, source, row, i;
-  MPI_Status status;
-
-  for (i=0; i<n_workers; i++){
-    job_counter[i] = 0;
-  }
-
-  while (msg_counter < n){
-    MPI_Recv(msg, n, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
-    msg_counter++;
-    
-    source = n_workers - status.MPI_SOURCE;
-
-    row = source * chunk + job_counter[source];
-    for (i=0; i<n; i++){
-      img[row][i] = msg[i];
-    }
-    job_counter[source]++;
-  }
-
-  cout << "P5\n" << n << " " << n << "\n255\n";
-  for (i=0; i<n; i++){
-    for (int j=0; j<n; j++){
-      cout << char(img[i][j]);
-    }
-  }
-  return;
-}
-
-
 int main(int argc, char *argv[]) {
-  int level = 6, n = 512, ss = 4, i;
+  int level = 6, n = 512, ss = 4;
   if (argc == 2) level = atoi(argv[1]);
-
-  //MPI initialization   ########################
-  int my_rank, n_process, dest, chunk, n_workers;
-  dest = 0;
-
-  MPI_Init(&argc, &argv);
-  MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
-  MPI_Comm_size(MPI_COMM_WORLD, &n_process);
-  n_workers = n_process-1;
-  chunk = n/n_workers;
-  //#############################################
-
-  if (my_rank == 0){
-    recieve_and_print(n_workers, n, chunk);
-  }
-
-  else{
-    //Work load division######################
-    int my_init, my_end;
-
-    if (my_rank == n_workers){
-      my_init = (n_workers-1)*chunk;
-      my_end = n;
+  Vec light = unitise(Vec(-1, -3, 2));
+  Scene *s(create(level, Vec(0, -1, 0), 1));
+  cout << "P5\n" << n << " " << n << "\n255\n";
+  for (int y=n-1; y>=0; --y)
+    for (int x=0; x<n; ++x) {
+      double g=0;
+      for (int dx=0; dx<ss; ++dx)
+        for (int dy=0; dy<ss; ++dy) {
+          Vec dir(unitise(Vec(x+dx*1./ss-n/2., y+dy*1./ss-n/2., n)));
+          g += ray_trace(light, Ray(Vec(0, 0, -4), dir), *s);
+        }
+      cout << char(int(.5 + 255. * g / (ss*ss)));
     }
-    else{
-      my_init = (my_rank-1)*chunk;
-      my_end = my_init + chunk;
-    }
-    //########################################
-    int count, msg[n];
-
-    Vec light = unitise(Vec(-1, -3, 2));
-    Scene *s(create(level, Vec(0, -1, 0), 1));
-    for (int y=my_end-1; y>=my_init; --y){
-      count = 0;
-      for (int x=0; x<n; ++x) {
-        double g=0;
-        for (int dx=0; dx<ss; ++dx)
-          for (int dy=0; dy<ss; ++dy) {
-            Vec dir(unitise(Vec(x+dx*1./ss-n/2., y+dy*1./ss-n/2., n)));
-            g += ray_trace(light, Ray(Vec(0, 0, -4), dir), *s);
-          }
-        msg[count] = int(.5 + 255. * g / (ss*ss));
-        count++;
-      }
-      MPI_Send(msg, n, MPI_INT, dest, 0, MPI_COMM_WORLD);
-    }
-    delete s;
-  }
-
-  MPI_Finalize();
+  delete s;
   return 0;
 }
