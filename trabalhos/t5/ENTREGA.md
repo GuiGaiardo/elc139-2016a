@@ -15,40 +15,40 @@ O algoritmo irá se sair melhor ou pior de acordo com a distribuição de trabal
 Os tamanhos variam entre 1, 10, 1000 e 250000.
 
 ###Versão 1:
-Na primeira versão a estrategia de paralelização foi a mais simples possível em OpenMP. Apenas foi inserida a diretiva "#pragma omp parallel for" e ficou a cargo da propria biblioteca escolher os parametros. Nesta versão o tamanho do trabalho não é explicitamente escolhido.
+Na primeira versão a estrategia de paralelização foi a mais simples possível em OpenMP. Apenas foi inserida a diretiva "#pragma omp parallel for" e ficou a cargo da propria biblioteca escolher os parametros. Nesta versão o tamanho do trabalho não é explicitamente escolhido.<br>
 (Imagem de execução para N=750000 em 2 threads, em pics/primes1.png)
 
 ###Versão 2:
-Na segunda versão a diretiva escolhida determina que o escalonamento é estático.
+Na segunda versão a diretiva escolhida determina que o escalonamento é estático.<br>
 (Imagem de execução para N=750000 em 2 threads com chunk=1, em pics/primes2_1.png)
 
 ###Versão 3:
-A diferença da terceira versão é que o escalonamento é dinâmico.
+A diferença da terceira versão é que o escalonamento é dinâmico.<br>
 (Imagem de execução para N=500000 em 4 threads com chunk=250000, em pics/primes3_250k.png)
 
 ##Resumo dos resultados
-Todos os tempos são o resultado da média de tempo de 5 medições.
+Todos os tempos são o resultado da média de tempo de 5 medições.<br>
 O arquivo tables.md contém todas as tabelas de Tempos, Speedups e Eficiências.
 
 ###N = 500000
 
 
 O tempo sequencial foi de 47.32s.
-As melhores versões com 2 threads foram as versões 2 e 3 com chunk = 10 e tiveram eficiência de 82%.
-A pior versão com 2 threads foi a versão 2 com chunk = 1 e teve eficiência de 43%.
-A melhor versão com 4 threads foi a versão 2 com chunk = 100 e teve eficiência de 54%.
-A pior versão com 4 threads foi a versão 3 com chunk = 250000 e teve eficiência de 27%.
+As melhores versões com 2 threads foram as versões 2 e 3 com chunk = 10 e tiveram eficiência de 82%.<br>
+A pior versão com 2 threads foi a versão 2 com chunk = 1 e teve eficiência de 43%.<br>
+A melhor versão com 4 threads foi a versão 2 com chunk = 100 e teve eficiência de 54%.<br>
+A pior versão com 4 threads foi a versão 3 com chunk = 250000 e teve eficiência de 27%.<br>
 
 ###N = 750000
 O tempo sequencial foi de 102.87.
-A melhor versão com 2 threads foi a versão 2 com chunk = 10 e 100 e tiveram eficiência de 83%.
-A pior versão com 2 threads foi a versão 2 com chunk = 1 e teve eficiência de 43%.
-A melhor versão com 4 threads foi a versão 2 com chunk = 10 e 100 e tiveram eficiência de 54%.
-A pior versão com 4 threads foi a versão 2 com chunk = 1 e teve eficiência de 27%.
+A melhor versão com 2 threads foi a versão 2 com chunk = 10 e 100 e tiveram eficiência de 83%.<br>
+A pior versão com 2 threads foi a versão 2 com chunk = 1 e teve eficiência de 43%.<br>
+A melhor versão com 4 threads foi a versão 2 com chunk = 10 e 100 e tiveram eficiência de 54%.<br>
+A pior versão com 4 threads foi a versão 2 com chunk = 1 e teve eficiência de 27%.<br>
 
 ###N = 1000000
 O tempo sequencial foi de 179.20.
-A melhor versão com 2 threads foi a versão 2 com chunk = 10 e teve eficiência de 83%.
-A pior versão com 2 threads foi a versão 2 com chunk = 1 e teve eficiência de 43%.
-A melhor versão com 4 threads foi a versão 2 com chunk = 100 e 100 e tiveram eficiência de 54%.
-A pior versão com 4 threads foi a versão 2 com chunk = 1 e teve eficiência de 30%.
+A melhor versão com 2 threads foi a versão 2 com chunk = 10 e teve eficiência de 83%.<br>
+A pior versão com 2 threads foi a versão 2 com chunk = 1 e teve eficiência de 43%.<br>
+A melhor versão com 4 threads foi a versão 2 com chunk = 100 e 100 e tiveram eficiência de 54%.<br>
+A pior versão com 4 threads foi a versão 2 com chunk = 1 e teve eficiência de 30%.<br>
