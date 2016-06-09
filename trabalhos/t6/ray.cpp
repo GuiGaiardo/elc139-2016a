@@ -4,6 +4,16 @@
 #include <cmath>
 #include <mpi.h>
 #include <stdlib.h>
+#include <cstdio>
+#include <sys/time.h>
+
+
+long wall_time()
+{
+    struct timeval t;
+    gettimeofday(&t, NULL);
+    return t.tv_sec*1000000 + t.tv_usec;
+}
 
 
 using namespace std;
@@ -105,6 +115,10 @@ Scene *create(int level, const Vec &c, double r) {
 }
 
 void recieve_and_print(int n_workers, int n, int chunk){
+  long tempo_inicial, tempo_final;
+  char cabecalho[12];
+  FILE *f = fopen("img.ppm", "w");
+
   int job_counter[n_workers], msg[n], img[n][n], msg_counter = 0, source, row, i;
   MPI_Status status;
 
@@ -112,10 +126,12 @@ void recieve_and_print(int n_workers, int n, int chunk){
     job_counter[i] = 0;
   }
 
+  tempo_inicial = wall_time();
+
   while (msg_counter < n){
     MPI_Recv(msg, n, MPI_INT, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
     msg_counter++;
-    
+
     source = n_workers - status.MPI_SOURCE;
 
     row = source * chunk + job_counter[source];
@@ -125,12 +141,26 @@ void recieve_and_print(int n_workers, int n, int chunk){
     job_counter[source]++;
   }
 
-  cout << "P5\n" << n << " " << n << "\n255\n";
+  tempo_final = wall_time();
+
+  printf("\nTempo calculos = %ld usec", (long) (tempo_final - tempo_inicial));
+
+  sprintf(cabecalho, "P5\n%d %d\n255\n", n, n);
+  fputs(cabecalho, f);
+  //cout << "P5\n" << n << " " << n << "\n255\n";
+
+  tempo_inicial = wall_time();
+
   for (i=0; i<n; i++){
     for (int j=0; j<n; j++){
-      cout << char(img[i][j]);
+      fputc(img[i][j], f)
+      //cout << char(img[i][j]);
     }
   }
+
+  tempo_final = wall_time();
+  printf("\nTempo escrita = %ld usec", (long) (tempo_final - tempo_inicial));
+
   return;
 }
 
