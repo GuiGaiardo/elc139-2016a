@@ -11,10 +11,6 @@ O tempo é medido pelo mestre com a função gettimeofday() da biblioteca time.h
 
 
 #Resultados
-##Computador pessoal
-Características: Dell Vostro 5470; Memória compartilhada de 4GB; Processador Intel Core i3-4030U, 2 núcleos com hyperthreading (4 núcleos virtuais); SO Debian 8 "Jessie".
-
-RESULTADOS AQUI
 
 ##Cluster da Amazon
 Características: 3 nós virtuais do tipo t2.micro (1Gb memória, 1CPU virtual). Mais detalhes em https://aws.amazon.com/ec2/details/
