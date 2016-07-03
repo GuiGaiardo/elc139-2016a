@@ -2,6 +2,17 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/time.h>
+
+
+long wall_time()
+{
+    struct timeval t;
+    gettimeofday(&t, NULL);
+    return t.tv_sec*1000000 + t.tv_usec;
+}
 
 using namespace std;
 
@@ -102,11 +113,20 @@ Scene *create(int level, const Vec &c, double r) {
 }
 
 int main(int argc, char *argv[]) {
-  int level = 6, n = 512, ss = 4;
+  int level = 6, n = 512, ss = 4, img[n][n], i, j;
+  char cabecalho[12];
+
+
+  FILE *f = fopen("img1.ppm", "w");
+  long tempo_inicial, tempo_final;
+
+  tempo_inicial = wall_time();
+
   if (argc == 2) level = atoi(argv[1]);
   Vec light = unitise(Vec(-1, -3, 2));
   Scene *s(create(level, Vec(0, -1, 0), 1));
-  cout << "P5\n" << n << " " << n << "\n255\n";
+  
+  
   for (int y=n-1; y>=0; --y)
     for (int x=0; x<n; ++x) {
       double g=0;
@@ -115,8 +135,25 @@ int main(int argc, char *argv[]) {
           Vec dir(unitise(Vec(x+dx*1./ss-n/2., y+dy*1./ss-n/2., n)));
           g += ray_trace(light, Ray(Vec(0, 0, -4), dir), *s);
         }
-      cout << char(int(.5 + 255. * g / (ss*ss)));
+      img[y][x] = (int(.5 + 255. * g / (ss*ss)));
     }
+  tempo_final = wall_time();
+  printf("\nTempo calculos = %ld usec", (long) (tempo_final - tempo_inicial));
+
+
+  sprintf(cabecalho, "P5\n%d %d\n255\n", n, n);
+  fputs(cabecalho, f);
+  tempo_inicial = wall_time();
+
+  for (i=n-1; i>=0; i--){
+    for (int j=0; j<n; j++){
+      fputc(img[i][j], f);
+    }
+  }
+
+  tempo_final = wall_time();
+  printf("\nTempo escrita = %ld usec", (long) (tempo_final - tempo_inicial));
+
   delete s;
   return 0;
 }

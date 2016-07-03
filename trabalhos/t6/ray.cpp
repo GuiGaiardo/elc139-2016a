@@ -117,7 +117,7 @@ Scene *create(int level, const Vec &c, double r) {
 void recieve_and_print(int n_workers, int n, int chunk){
   long tempo_inicial, tempo_final;
   char cabecalho[12];
-  FILE *f = fopen("img.ppm", "w");
+  FILE *f = fopen("img1.ppm", "w");
 
   int job_counter[n_workers], msg[n], img[n][n], msg_counter = 0, source, row, i;
   MPI_Status status;
@@ -153,7 +153,7 @@ void recieve_and_print(int n_workers, int n, int chunk){
 
   for (i=0; i<n; i++){
     for (int j=0; j<n; j++){
-      fputc(img[i][j], f)
+      fputc(img[i][j], f);
       //cout << char(img[i][j]);
     }
   }
