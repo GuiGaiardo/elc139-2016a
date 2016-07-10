@@ -6,7 +6,7 @@ Aluno: Guilherme Gaiardo (Matrícula: 201210149)
 Multiprocess é um módulo nativo de Python e fornece uma interface para execução de processos similar a API do módulo de Multithreading. O trabalho buscou fazer testes de performance com o módulo utilizando a chamada Pool.map para execução de um Produto Interno entre dois vetores de tamanhos variados.
 
 ##Produto Interno em Python com multiprocess.Pool
-!!!LINK DO SCRIPT!!!
+https://github.com/GuiGaiardo/elc139-2016a/blob/master/trabalhos/t_final/dot_prod.py
 <br>O código em Python acima basicamente recebe 3 parâmetros como argumentos de chamada: o número de processos a serem utilizados na Pool, o tamanho do trabalho que cada processo executará (eg. tamanho de sua parte dos vetores a serem calculados) e o número de repetições da operação de cálculo do produto interno.<br>
 O trecho de código que cada processo irá executar é exatamente a função (l.6)dot_prod.
 <br>Os processos são instanciados na chamada
