@@ -142,37 +142,64 @@ def get_run_time(cmd):
 		print(time)
 	return average_and_variance(times)
 
+def start_tests(statistics, script):
+	for vec in vec_size:
+		for process in n_process:
+			work_size = vec/process
+			cmd = "python3 " + script + " " + str(process) + " " + str(int(work_size)) + " " + str(repetitions)
+			time, variance = get_run_time(cmd)
+			with open("times_bckp", "a") as backup_file:
+				line = str(vec) + " " + str(process) + " " + str(time) + ", " + str(variance) + "\n"
+				backup_file.write(line)
+			statistics.set_time(time, vec, process)
+			statistics.set_variance(variance, vec, process)
+			output = "\n\nMedia do tempo de execucao para " + cmd + "\n" + str(time)
+			print(output)
+
+def load_times(statistics, times_file):
+	with open(times_file, "r") as f:
+		lines = f.readlines()
+	times = []
+	variances = []
+	
+	for line in lines:
+		line = line.split(" ")
+		time = float(line[0][:len(line[0])-1])
+		
+		times.append(time)
+		variances.append(float(line[1]))
+
+	for vec in vec_size:
+		for process in n_process:
+			statistics.set_time(times.pop(0), vec, process)
+			statistics.set_variance(variances.pop(0), vec, process)
+
+
 #######################################################
 #Parametros que serao variados entre as execucoes
-#vec_size = [100000, 500000, 1000000]
-vec_size = [10000, 50000, 500000]
-repetitions = 1000
-n_process = [1,2,4]
+vec_size = [100000, 500000, 1000000]
+repetitions = 3000
+n_process = [1,2,4,8]
 #######################################################
 
 
-
-
-
-if (len(sys.argv) != 2):
-	print("Usage: $python3 run_dot.py <path_to_file>")
-	print("Example1: $python3 run_dot.py ./dot_prod.py")
-	exit()
-
-script = sys.argv[1]
 statistics = Estatisticator9001(vec_size, n_process)
 
+if len(sys.argv) >= 2:
+	if sys.argv[1] == '-l':
+		times_file = sys.argv[2]
+		load_times(statistics, times_file)
+	else:
+		script = sys.argv[1]
+		start_tests(statistics, script)
+
+else:
+	print("Usage: $python3 run_dot.py [-l] <path_to_file>")
+	print("Example1: $python3 run_dot.py ./dot_prod.py")
+	print("Example1: $python3 -l ./times_bckp")
+	exit()
 
 
-for vec in vec_size:
-	for process in n_process:
-		work_size = vec/process
-		cmd = "python3 " + str(script) + " " + str(process) + " " + str(int(work_size)) + " " + str(repetitions)
-		time, variance = get_run_time(cmd)
-		statistics.set_time(time, vec, process)
-		statistics.set_variance(variance, vec, process)
-		output = "\n\nMedia do tempo de execucao para " + cmd + "\n" + str(time)
-		print(output)
 
 statistics.calculate_speedups()
 statistics.calculate_efficiencies()
